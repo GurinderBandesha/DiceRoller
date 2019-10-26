@@ -11,11 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    int scored = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +58,67 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void on_button_click(View view){
+
+
+    public void on_button_click(View view) {
+
+
+        EditText userin = this.findViewById(R.id.chosennumber);
+
+        TextView change = this.findViewById(R.id.textView2);
+
+        TextView updated = this.findViewById(R.id.textView5score);
+
+
 
         TextView tv = this.findViewById(R.id.textView);
         Random r = new Random();
-        int number = r.nextInt(6) ;
+        int number = r.nextInt(6);
+
+
+        String user = userin.getText().toString();
+        int finalValue = Integer.parseInt(user);
+
 
         tv.setText(Integer.toString(number));
+
+
+        if (finalValue > 0 || finalValue < 7) {
+
+            if (finalValue == number) {
+
+                change.setText(("Congrats"));
+                userin.setText("");
+
+                scored = scored+1;
+
+
+            }
+            else {
+                change.setText("Enter a number 0-6");
+                userin.setText("");
+
+
+            }
+        }
+            else{
+
+            }
+            updated.setText(String.valueOf(scored));
+        }
     }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
